@@ -4,11 +4,11 @@ import '../css/ButtonClear.css';
 function ButtonClear (props)
 {
   return (
-    <div className="boton-clear"
+    <button className="boton-clear"
       onClick={() => props.handleClear()}
     >
       {props.children}
-    </div>
+    </button>
   );
 }
 

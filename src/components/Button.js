@@ -7,11 +7,11 @@ function Button( props )
         return isNaN(value) && (value !== '.') && (value !== '=');
     };
     return (
-        <div className={`boton-contenedor ${isOperator(props.children) ? 'operador': null}`.trimEnd()}
+        <button className={`boton-contenedor ${isOperator(props.children) ? 'operador': null}`.trimEnd()}
         onClick={() => props.handleClick(props.children)}
         >
           {props.children}
-        </div>
+        </button>
     );
 }
 
