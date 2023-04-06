@@ -1,66 +1,58 @@
 import React, { useState } from 'react';
 import './App.css';
-import freecodeCampLogo from './img/freecodecamp-logo.png';
 import Button from './components/Button';
 import ButtonClear from './components/ButtonClear';
 import Screen from './components/Screen';
 import { evaluate } from 'mathjs';
+import Logo from './components/Logo';
+import { addInput, clearInput, calculateResult } from './Helpers';
 
 function App() {
   const [input, setInput ] = useState('');
 
-  const addInput = val => {
-    setInput( input + val );
+  const handleAddInput = val => {
+    addInput(input, setInput, val);
   };
 
-  const clearInput = () => {
-    setInput('');
+  const hadleClear = () => {
+    clearInput( setInput );
   };
 
-  const calculateResult = () => {
-    if(input){
-      setInput( evaluate(input) );
-    }else{
-      alert('Please entry a valid operation');
-    }
+  const handleResult = () => {
+    calculateResult( setInput, evaluate, input );
   };
 
   return (
     <div className="App">
-      <div className='freecodecamp-logo-contenedor'>
-        <img
-          className='freecodecamp-logo'
-          src={freecodeCampLogo}
-          alt='Logo de freeCodeCamp'/>
-      </div>
+      <Logo />
       <div className='contenedor-calculadora'>
         <Screen input={input}/>
         <div className='fila'>
-          <Button handleClick={addInput} >1</Button>
-          <Button handleClick={addInput}>2</Button>
-          <Button handleClick={addInput}>3</Button>
-          <Button handleClick={addInput}>+</Button>
+          <Button handleClick={handleAddInput}>1</Button>
+          <Button handleClick={handleAddInput}>2</Button>
+          <Button handleClick={handleAddInput}>3</Button>
+          <Button handleClick={handleAddInput}>+</Button>
         </div>
         <div className='fila'>
-          <Button handleClick={addInput}>4</Button>
-          <Button handleClick={addInput}>5</Button>
-          <Button handleClick={addInput}>6</Button>
-          <Button handleClick={addInput}>-</Button>
+          <Button handleClick={handleAddInput}>4</Button>
+          <Button handleClick={handleAddInput}>5</Button>
+          <Button handleClick={handleAddInput}>6</Button>
+          <Button handleClick={handleAddInput}>-</Button>
         </div>
         <div className='fila'>
-          <Button handleClick={addInput}>7</Button>
-          <Button handleClick={addInput}>8</Button>
-          <Button handleClick={addInput}>9</Button>
-          <Button handleClick={addInput}>*</Button>
+          <Button handleClick={handleAddInput}>7</Button>
+          <Button handleClick={handleAddInput}>8</Button>
+          <Button handleClick={handleAddInput}>9</Button>
+          <Button handleClick={handleAddInput}>*</Button>
         </div>
         <div className='fila'>
-          <Button handleClick={calculateResult}>=</Button>
-          <Button handleClick={addInput}>0</Button>
-          <Button handleClick={addInput}>.</Button>
-          <Button handleClick={addInput}>/</Button>
+          <Button handleClick={handleResult}>=</Button>
+          <Button handleClick={handleAddInput}>0</Button>
+          <Button handleClick={handleAddInput}>.</Button>
+          <Button handleClick={handleAddInput}>/</Button>
         </div>
         <div className='fila'>
-          <ButtonClear handleClear={clearInput}>Clear</ButtonClear>
+          <ButtonClear handleClear={hadleClear}>Clear</ButtonClear>
         </div>
       </div>
     </div>
